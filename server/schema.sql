@@ -3,7 +3,7 @@ CREATE DATABASE chat;
 USE chat;
 
 CREATE TABLE messages (
-  user INTEGER(32), message TEXT(256), room INTEGER(32)  
+  user_id INTEGER(32), message TEXT(256), room_id INTEGER(32)  
 );
 
 CREATE TABLE users (

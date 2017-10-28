@@ -4,27 +4,18 @@ var qs = require('qs');
 module.exports = {
   messages: {
     get: function (callback) {
-      // query database
-        // use query strings
-          //callback(data)
+      //callback(data)~~~~~~~~~~~~~~~~~~~~
 
       var queryString = 'SELECT * FROM messages';
 
       db.query(queryString, function(err, rows, fields) {
         if (err) { throw err; }
-
         console.log('IN ROWS: ', rows);
-
-        for (var i in rows) {
-          console.log('Messages: ', rows.message);
-        }
-      });
-
-          
+      });          
     }, // a function which produces all the messages
     post: function () {
 
-
+      var queryPost = 'INSERT INTO messages (user_id, message, room_id) VALUES (***data from message***)';
 
     } // a function which can be used to insert a message into the database
   },
