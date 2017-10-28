@@ -6,3 +6,20 @@ var mysql = require('mysql');
 
 
 // search docs--> how to connect to db
+
+var con = mysql.createConnection({
+  host: 'localhost',
+  user: 'student',
+  password: 'student',
+  database: 'chat'
+});
+
+con.connect(function(err) {
+  if (err) { throw err; }
+  console.log('Connected...');
+});
+
+// need to con.end()
+
+
+module.exports = con;
