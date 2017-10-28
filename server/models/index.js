@@ -4,26 +4,38 @@ var qs = require('qs');
 module.exports = {
   messages: {
     get: function (callback) {
-      //callback(data)~~~~~~~~~~~~~~~~~~~~
+      var queryString = 'SELECT messages.id, messages.message, messages.roomname users.username FROM messages \
+      LEFT OUTER JOIN users ON (messages.userid = users.id) \
+      ORBER BY messages.id DESC';
 
-      var queryString = 'SELECT * FROM messages';
-
-      db.query(queryString, function(err, rows, fields) {
-        if (err) { throw err; }
-        console.log('IN ROWS: ', rows);
+      db.query(queryString, function(err, results) {
+        callback(results);
       });          
-    }, // a function which produces all the messages
-    post: function () {
+    },
 
-      var queryPost = 'INSERT INTO messages (user_id, message, room_id) VALUES (***data from message***)';
+    post: function (params, callbacks) {
+      var queryString = 'INSERT INTO messages (message, userid, roomname) \
+                      VALUES (?, (SELECT id FROM users WHERE username = ? LIMIT 1), ?)';
 
-    } // a function which can be used to insert a message into the database
+      db.query(queryString, params, function(err, results) {
+        callback(results);
+      });
+    }
   },
 
   users: {
-    // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function (callback) {
+      var queryString = 'SELECT * FROM users';
+      db.query(queryString, function(err, results) {
+        callback(results);
+      });
+    },
+    post: function (params, callback) {
+      var queryString = 'INSERT INTO users (username) VALUES (?)';
+      db.query(queryString, params, function(err, results) {
+        callback(results);
+      });
+    }
   }
 };
 

@@ -2,16 +2,22 @@ CREATE DATABASE chat;
 
 USE chat;
 
+/*
+Reference the data using the FOR IN syntax from sqool
+*/
+
 CREATE TABLE messages (
-  user_id INTEGER(32), message TEXT(256), room_id INTEGER(32)  
+  id INTEGER(32) AUTO_INCREMENT,
+  userid INTEGER(32), 
+  message TEXT(256), 
+  roomname TEXT(256),
+  PRIMARY KEY (ID)
 );
 
 CREATE TABLE users (
-  id INTEGER(32), name TEXT(256)
-);
-
-CREATE TABLE room (
-  id INTEGER(32), name TEXT(256)
+  id INTEGER(32) AUTO_INCREMENT, 
+  name TEXT(256),
+  PRIMARY KEY (ID)
 );
 
 /* Create other tables and define schemas for them here! */
